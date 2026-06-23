@@ -5,7 +5,7 @@ import { profile } from "@/data/profile";
 
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://alessandrobroda.vercel.app";
+  "https://portfolio-five-lilac-91.vercel.app";
 
 export const siteConfig = {
   name: `${profile.name} — ${profile.role}`,
