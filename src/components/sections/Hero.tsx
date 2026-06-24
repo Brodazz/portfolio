@@ -142,23 +142,20 @@ export default function Hero() {
               <circle cx="34" cy="20" r="0.8" fill="currentColor" opacity="0.35" />
             </svg>
 
-            {/* Figura grande, ancorata in basso, base dissolta con mask. */}
+            {/* Figura grande (PNG ritagliato sul contorno), base dissolta con mask. */}
             <Image
               src={heroImage}
               alt={name}
-              width={611}
-              height={408}
+              width={287}
+              height={309}
               priority
-              sizes="(max-width: 768px) 88vw, 520px"
-              className="absolute bottom-0 left-1/2 h-auto w-full"
+              sizes="(max-width: 768px) 78vw, 460px"
+              className="absolute bottom-0 left-1/2 h-auto w-[84%] -translate-x-1/2"
               style={{
-                // Frame spostato a sinistra: nella foto la persona è leggermente
-                // a destra del centro, così risulta centrata.
-                transform: "translateX(-54%)",
                 maskImage:
-                  "linear-gradient(to bottom, black 66%, transparent 96%)",
+                  "linear-gradient(to bottom, black 82%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, black 66%, transparent 96%)",
+                  "linear-gradient(to bottom, black 82%, transparent 100%)",
               }}
             />
           </div>
