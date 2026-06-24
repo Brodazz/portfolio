@@ -53,15 +53,13 @@ export default function HeroBackdrop({
     [1, 1, 0]
   );
 
-  // MOBILE: la figura (contenitore alto quanto lei) sale rapidamente dal basso
-  // riempiendo subito lo spazio vuoto sotto l'hero, e si ferma ~centrata.
-  const mobileY = useTransform(scrollY, [0, 0.5 * vh], [vh, 0.22 * vh]);
-  // Piena (momento di sola immagine) → si dissolve mentre "Su di me" sale →
-  // resta come SFONDO TENUE dietro "Su di me" → infine sparisce.
+  // MOBILE: la figura è una SEZIONE in-flow (scorre 1:1 come le altre sezioni).
+  // Sezione bassa (poco vuoto attorno) → diventa piena presto e si dissolve
+  // subito, così si arriva in fretta a "Su di me". (Section min-h-[62vh].)
   const mobileOpacity = useTransform(
     scrollY,
-    [0, top - vh, top, top + 0.6 * vh, top + 1.2 * vh],
-    [1, 1, 0.15, 0.15, 0]
+    [0, top - 0.7 * vh, top - 0.2 * vh],
+    [1, 1, 0]
   );
 
   return (
@@ -78,23 +76,19 @@ export default function HeroBackdrop({
         </motion.div>
       </div>
 
-      {/* MOBILE: figura che sale dal basso (tracciando l'hero) e poi resta
-          come sfondo tenue. Contenitore alto quanto la figura: la posizione
-          verticale è gestita dal translateY (mobileY). */}
-      <div className="pointer-events-none absolute inset-0 z-0 md:hidden">
-        <motion.div
-          style={{ opacity: mobileOpacity, y: mobileY }}
-          className="sticky top-0 flex justify-center px-6"
-        >
-          <HeroFigure className="max-w-xs" />
-        </motion.div>
-      </div>
-
-      {/* Contenuto sopra la figura. */}
+      {/* Contenuto. */}
       <div className="relative z-10">
         {hero}
-        {/* Spazio (solo mobile) tra hero e "Su di me" per il momento-immagine. */}
-        <div className="h-[150vh] md:hidden" aria-hidden />
+        {/* MOBILE: sezione-immagine in-flow (scorre 1:1), staccata di poco
+            dall'hero, che si dissolve appena è in vista. */}
+        <section className="mt-4 flex min-h-[55vh] items-start justify-center px-6 md:hidden">
+          <motion.div
+            style={{ opacity: mobileOpacity }}
+            className="w-full max-w-xs"
+          >
+            <HeroFigure />
+          </motion.div>
+        </section>
         {about}
       </div>
     </div>
