@@ -1,11 +1,15 @@
 "use client";
 
-// Scroll-reveal riutilizzabile: fade + leggero translateY all'ingresso nel
-// viewport, UNA sola volta. Con reduced-motion anima solo l'opacità (nessun
-// movimento), così non c'è layout-shift né effetti fastidiosi.
+// Scroll-reveal riutilizzabile: ingresso morbido ed elegante quando l'elemento
+// entra nel viewport (UNA sola volta): fade + risalita dolce + leggero blur-in
+// (messa a fuoco), con easing expo-out. Con reduced-motion anima solo l'opacità
+// (nessun movimento/blur), così non c'è layout-shift né effetti fastidiosi.
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
+
+// Easing morbido (tipo "expo out"): parte deciso e si adagia con grazia.
+const SMOOTH = [0.22, 1, 0.36, 1] as const;
 
 interface RevealProps {
   children: ReactNode;
@@ -20,17 +24,32 @@ export default function Reveal({
   children,
   delay = 0,
   className,
-  y = 16,
+  y = 28,
 }: RevealProps) {
   const reduce = useReducedMotion();
+
+  const variants: Variants = reduce
+    ? {
+        hidden: { opacity: 0 },
+        show: { opacity: 1, transition: { duration: 0.3, delay } },
+      }
+    : {
+        hidden: { opacity: 0, y, filter: "blur(8px)" },
+        show: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: { duration: 0.9, delay, ease: SMOOTH },
+        },
+      };
 
   return (
     <motion.div
       className={className}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
-      whileInView={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      variants={variants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-12% 0px -12% 0px" }}
     >
       {children}
     </motion.div>
