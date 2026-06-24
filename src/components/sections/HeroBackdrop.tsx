@@ -53,13 +53,9 @@ export default function HeroBackdrop({
     [1, 1, 0]
   );
 
-  // MOBILE: sale dal basso DURANTE l'uscita dell'hero (è già su quando l'hero
-  // se ne va: niente buco nero, sensazione "subito dopo l'hero").
-  const mobileY = useTransform(
-    scrollY,
-    [Math.max(1, top - 2.0 * vh), top - 1.5 * vh],
-    [vh, 0]
-  );
+  // MOBILE: la figura (contenitore alto quanto lei) sale rapidamente dal basso
+  // riempiendo subito lo spazio vuoto sotto l'hero, e si ferma ~centrata.
+  const mobileY = useTransform(scrollY, [0, 0.5 * vh], [vh, 0.22 * vh]);
   // Piena (momento di sola immagine) → si dissolve mentre "Su di me" sale →
   // resta come SFONDO TENUE dietro "Su di me" → infine sparisce.
   const mobileOpacity = useTransform(
@@ -82,11 +78,13 @@ export default function HeroBackdrop({
         </motion.div>
       </div>
 
-      {/* MOBILE: figura che sale dal basso e poi resta come sfondo tenue. */}
+      {/* MOBILE: figura che sale dal basso (tracciando l'hero) e poi resta
+          come sfondo tenue. Contenitore alto quanto la figura: la posizione
+          verticale è gestita dal translateY (mobileY). */}
       <div className="pointer-events-none absolute inset-0 z-0 md:hidden">
         <motion.div
           style={{ opacity: mobileOpacity, y: mobileY }}
-          className="sticky top-0 flex h-screen items-center justify-center px-6"
+          className="sticky top-0 flex justify-center px-6"
         >
           <HeroFigure className="max-w-xs" />
         </motion.div>
