@@ -14,7 +14,7 @@ export const badges: Badge[] = [
     icon: Languages,
     title: "Inglese B2",
     description:
-      "Certificazione conseguita all'Università di Camerino.",
+      "Certificazione di lingua inglese livello B2.",
   },
   {
     icon: HeartPulse,
