@@ -95,19 +95,19 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
         {heroImage ? (
-          // Foto reale: silhouette trasparente che "siede" sul glow verde,
-          // senza box/sfondo proprio. Compatta su mobile per non rubare
-          // spazio verticale.
-          <div className="relative mx-auto w-full max-w-[17rem] sm:max-w-sm md:max-w-md">
-            {/* Glow radiale #34D399 che "respira" (statico con reduced-motion). */}
+          // Foto reale: la figura "emerge" da un disco luminoso (spotlight).
+          // Disco = gradiente radiale verde + griglia + anelli; la base della
+          // foto viene dissolta con una mask così non sembra appesa.
+          <div className="relative mx-auto aspect-square w-full max-w-[16rem] sm:max-w-sm md:max-w-md">
+            {/* Glow esterno che "respira" (statico con reduced-motion). */}
             <motion.div
               aria-hidden
-              className="absolute left-1/2 top-1/2 -z-10 aspect-square w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+              className="absolute inset-[6%] -z-10 rounded-full blur-2xl"
               style={{ backgroundColor: "#34D399", opacity: 0.3 }}
               animate={
                 reduce
                   ? undefined
-                  : { scale: [1, 1.12, 1], opacity: [0.24, 0.42, 0.24] }
+                  : { scale: [1, 1.1, 1], opacity: [0.22, 0.4, 0.22] }
               }
               transition={
                 reduce
@@ -115,6 +115,43 @@ export default function Hero() {
                   : { duration: 6, repeat: Infinity, ease: "easeInOut" }
               }
             />
+
+            {/* Disco-palco: gradiente radiale verde + griglia sottile, clip a cerchio. */}
+            <div
+              aria-hidden
+              className="absolute inset-[3%] overflow-hidden rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at 52% 52%, rgba(52,211,153,0.34), rgba(19,26,23,0.45) 56%, rgba(10,15,13,0) 76%)",
+              }}
+            >
+              <div
+                className="absolute inset-0 opacity-[0.10]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
+                  backgroundSize: "26px 26px",
+                }}
+              />
+            </div>
+
+            {/* Anelli decorativi: uno netto interno, uno tratteggiato che ruota lento. */}
+            <div
+              aria-hidden
+              className="absolute inset-[3%] rounded-full border border-accent/15"
+            />
+            <motion.div
+              aria-hidden
+              className="absolute -inset-[1%] rounded-full border border-dashed border-accent/15"
+              animate={reduce ? undefined : { rotate: 360 }}
+              transition={
+                reduce
+                  ? undefined
+                  : { duration: 60, repeat: Infinity, ease: "linear" }
+              }
+            />
+
+            {/* Figura: ancorata in basso, base dissolta nel disco con mask. */}
             <Image
               src={heroImage}
               alt={name}
@@ -122,7 +159,16 @@ export default function Hero() {
               height={408}
               priority
               sizes="(max-width: 768px) 70vw, 420px"
-              className="relative h-auto w-full object-contain drop-shadow-[0_0_30px_rgba(52,211,153,0.18)]"
+              className="absolute bottom-[2%] left-1/2 h-auto w-[98%]"
+              style={{
+                // Frame spostato a sinistra: nella foto la persona è leggermente
+                // a destra del centro, così risulta centrata nel disco.
+                transform: "translateX(-54%)",
+                maskImage:
+                  "linear-gradient(to bottom, black 64%, transparent 94%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, black 64%, transparent 94%)",
+              }}
             />
           </div>
         ) : (
