@@ -4,13 +4,12 @@
 //
 // DESKTOP: figura sticky a destra dell'hero (visibile da subito), si dissolve
 //   quando arriva "Su di me".
-// MOBILE: subito dopo l'hero la figura SALE dal basso (translateY legato allo
-//   scroll: entra come una sezione, non in dissolvenza), resta, poi si attenua
-//   restando come SFONDO TENUE dietro "Su di me", e infine sparisce.
+// MOBILE: la figura è una SEZIONE in-flow subito dopo l'hero (scorre 1:1 come
+//   le altre sezioni), staccata di poco, e si dissolve appena è in vista.
 //
-// Entrambi i layout sono nel DOM, mostrati per breakpoint via CSS. Le opacità/
-// posizioni sono calcolate sullo scroll della finestra usando la posizione
-// misurata di "Su di me" (evita il bug di hydration di useScroll({ target })).
+// Entrambi i layout sono nel DOM, mostrati per breakpoint via CSS. Le opacità
+// sono calcolate sullo scroll della finestra usando la posizione misurata di
+// "Su di me" (evita il bug di hydration di useScroll({ target })).
 
 import { useState, useEffect, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -53,9 +52,8 @@ export default function HeroBackdrop({
     [1, 1, 0]
   );
 
-  // MOBILE: la figura è una SEZIONE in-flow (scorre 1:1 come le altre sezioni).
-  // Sezione bassa (poco vuoto attorno) → diventa piena presto e si dissolve
-  // subito, così si arriva in fretta a "Su di me". (Section min-h-[62vh].)
+  // MOBILE: la figura (sezione in-flow, min-h-[55vh]) resta piena finché non è
+  // ben in vista, poi si dissolve subito, così si arriva in fretta a "Su di me".
   const mobileOpacity = useTransform(
     scrollY,
     [0, top - 0.7 * vh, top - 0.2 * vh],

@@ -7,9 +7,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
-
-// Easing morbido (tipo "expo out"): parte deciso e si adagia con grazia.
-const SMOOTH = [0.22, 1, 0.36, 1] as const;
+import { EASE_SMOOTH } from "@/lib/motion";
 
 interface RevealProps {
   children: ReactNode;
@@ -39,7 +37,7 @@ export default function Reveal({
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          transition: { duration: 0.9, delay, ease: SMOOTH },
+          transition: { duration: 0.9, delay, ease: EASE_SMOOTH },
         },
       };
 

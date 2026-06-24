@@ -5,12 +5,11 @@
 // sia nell'hero sia come livello di sfondo che si dissolve allo scroll.
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
+import BreathingGlow from "@/components/motion/BreathingGlow";
 
 export default function HeroFigure({ className = "" }: { className?: string }) {
   const { name, heroImage } = profile;
-  const reduce = useReducedMotion();
 
   const initials = name
     .split(" ")
@@ -21,19 +20,12 @@ export default function HeroFigure({ className = "" }: { className?: string }) {
     <div className={`relative aspect-square w-full ${className}`}>
       {heroImage ? (
         <>
-          {/* Glow morbido che "respira" (statico con reduced-motion). */}
-          <motion.div
-            aria-hidden
+          {/* Glow morbido che "respira" dietro la figura. */}
+          <BreathingGlow
             className="absolute inset-[14%] -z-10 rounded-full blur-3xl"
             style={{ backgroundColor: "#34D399", opacity: 0.26 }}
-            animate={
-              reduce ? undefined : { scale: [1, 1.1, 1], opacity: [0.2, 0.36, 0.2] }
-            }
-            transition={
-              reduce
-                ? undefined
-                : { duration: 6, repeat: Infinity, ease: "easeInOut" }
-            }
+            scalePeak={1.1}
+            opacityKeyframes={[0.2, 0.36, 0.2]}
           />
 
           {/* Forme geometriche decorative, sparse e pulite. */}
@@ -75,17 +67,11 @@ export default function HeroFigure({ className = "" }: { className?: string }) {
       ) : (
         <>
           {/* Glow radiale dietro il placeholder, che "respira". */}
-          <motion.div
+          <BreathingGlow
             className="absolute inset-0 -z-10 rounded-full blur-3xl"
             style={{ background: "var(--glow)" }}
-            animate={
-              reduce ? undefined : { scale: [1, 1.12, 1], opacity: [0.6, 0.85, 0.6] }
-            }
-            transition={
-              reduce
-                ? undefined
-                : { duration: 6, repeat: Infinity, ease: "easeInOut" }
-            }
+            scalePeak={1.12}
+            opacityKeyframes={[0.6, 0.85, 0.6]}
           />
           {/* Placeholder elegante: pannello scuro con monogramma e griglia. */}
           <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface/60 backdrop-blur">
