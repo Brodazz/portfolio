@@ -94,34 +94,56 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
-        <div className="relative aspect-square w-full max-w-sm">
-          {/* Glow radiale dietro la silhouette, che "respira" lentamente.
-              Con reduced-motion resta statico. */}
-          <motion.div
-            className="absolute inset-0 -z-10 rounded-full blur-3xl"
-            style={{ background: "var(--glow)" }}
-            animate={
-              reduce
-                ? undefined
-                : { scale: [1, 1.12, 1], opacity: [0.6, 0.85, 0.6] }
-            }
-            transition={
-              reduce
-                ? undefined
-                : { duration: 6, repeat: Infinity, ease: "easeInOut" }
-            }
-          />
-          {heroImage ? (
+        {heroImage ? (
+          // Foto reale: silhouette trasparente che "siede" sul glow verde,
+          // senza box/sfondo proprio. Compatta su mobile per non rubare
+          // spazio verticale.
+          <div className="relative mx-auto w-full max-w-[17rem] sm:max-w-sm md:max-w-md">
+            {/* Glow radiale #34D399 che "respira" (statico con reduced-motion). */}
+            <motion.div
+              aria-hidden
+              className="absolute left-1/2 top-1/2 -z-10 aspect-square w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+              style={{ backgroundColor: "#34D399", opacity: 0.3 }}
+              animate={
+                reduce
+                  ? undefined
+                  : { scale: [1, 1.12, 1], opacity: [0.24, 0.42, 0.24] }
+              }
+              transition={
+                reduce
+                  ? undefined
+                  : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+              }
+            />
             <Image
               src={heroImage}
               alt={name}
-              fill
+              width={611}
+              height={408}
               priority
-              className="rounded-3xl object-cover"
+              sizes="(max-width: 768px) 70vw, 420px"
+              className="relative h-auto w-full object-contain drop-shadow-[0_0_30px_rgba(52,211,153,0.18)]"
             />
-          ) : (
-            // Placeholder elegante (non un "work in progress"):
-            // pannello scuro con monogramma in gradient e griglia sottile.
+          </div>
+        ) : (
+          <div className="relative aspect-square w-full max-w-sm">
+            {/* Glow radiale dietro il placeholder, che "respira" lentamente.
+                Con reduced-motion resta statico. */}
+            <motion.div
+              className="absolute inset-0 -z-10 rounded-full blur-3xl"
+              style={{ background: "var(--glow)" }}
+              animate={
+                reduce
+                  ? undefined
+                  : { scale: [1, 1.12, 1], opacity: [0.6, 0.85, 0.6] }
+              }
+              transition={
+                reduce
+                  ? undefined
+                  : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+              }
+            />
+            {/* Placeholder elegante: pannello scuro con monogramma e griglia. */}
             <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface/60 backdrop-blur">
               <div
                 className="absolute inset-0 opacity-[0.15]"
@@ -135,8 +157,8 @@ export default function Hero() {
                 {initials}
               </span>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </motion.div>
     </section>
   );

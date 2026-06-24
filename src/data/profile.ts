@@ -60,4 +60,5 @@ export const profile: Profile = {
     linkedin: "", // ← lo attivi appena crei il profilo LinkedIn
   },
   cvUrl: "/cv.pdf",
+  heroImage: "/hero.png",
 };
