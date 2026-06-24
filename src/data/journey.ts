@@ -40,6 +40,13 @@ export const journey: JourneyGroup[] = [
     title: "Esperienza",
     entries: [
       {
+        period: "In corso",
+        title: "Tesi di laurea",
+        org: "Vargroup",
+        description:
+          "Collaborazione con Vargroup per la tesi di laurea, in continuità con lo stage: approfondimento sugli agenti AI applicati ai processi ERP.",
+      },
+      {
         period: "Aprile – Maggio 2026",
         title: "Stage — Web Developer",
         org: "Vargroup",

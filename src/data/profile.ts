@@ -10,7 +10,6 @@ export interface SocialLinks {
 
 export interface Contacts {
   email: string;
-  phone: string;
   location: string;
 }
 
@@ -38,7 +37,7 @@ export const profile: Profile = {
   role: "Full-Stack Developer",
   tagline:
     "Neolaureando in Informatica. Costruisco esperienze web pulite e funzionali, dal frontend agli agenti AI.",
-  availability: "Disponibile",
+  availability: "Aperto a opportunità",
   bio: [
     "Sto per laurearmi in Informatica all'Università di Camerino. Mi muovo a mio agio su tutto lo stack — dal frontend in React, Next.js e TypeScript al backend in Node e Java — e negli ultimi mesi mi sono appassionato al mondo degli agenti AI, diventati il cuore del mio lavoro da web developer.",
     "Lavoro con metodo: prima capisco il problema, poi progetto, poi implemento. Sotto deadline resto pragmatico e iterativo, e curo il codice — pulito, leggibile, mantenibile — perché credo che la qualità si veda nei dettagli.",
@@ -53,7 +52,6 @@ export const profile: Profile = {
   ],
   contacts: {
     email: "alessandrobroda03@gmail.com",
-    phone: "+39 328 956 6542",
     location: "Fabriano (AN), Italia",
   },
   social: {

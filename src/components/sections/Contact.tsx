@@ -4,7 +4,7 @@
 // inline. Endpoint placeholder (mzdlzqll): sostituiscilo col tuo reale.
 
 import { useForm, ValidationError } from "@formspree/react";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { profile } from "@/data/profile";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -35,13 +35,6 @@ export default function Contact() {
           >
             <Mail className="size-5 shrink-0 text-accent" strokeWidth={1.9} />
             {contacts.email}
-          </a>
-          <a
-            href={`tel:${contacts.phone.replace(/\s/g, "")}`}
-            className="flex items-center gap-3 text-text-muted transition-colors hover:text-accent"
-          >
-            <Phone className="size-5 shrink-0 text-accent" strokeWidth={1.9} />
-            {contacts.phone}
           </a>
           <p className="flex items-center gap-3 text-text-muted">
             <MapPin className="size-5 shrink-0 text-accent" strokeWidth={1.9} />
