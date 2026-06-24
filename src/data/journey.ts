@@ -21,23 +21,18 @@ export const journey: JourneyGroup[] = [
     title: "Formazione",
     entries: [
       {
-        period: "2018 – 2023",
-        title: "Liceo Scientifico - Scienze Applicate",
-        org: "Vito Volterra, Fabriano",
-        description:
-          "Solida base scientifico-tecnologica e informatica, unita alle materie umanistiche.",
-      },
-    ],
-  },
-  {
-    title: "Formazione Specialistica",
-    entries: [
-      {
         period: "2023 – 2026",
         title: "Laurea Triennale in Informatica",
         org: "Università di Camerino",
         description:
           "Basi solide su programmazione, algoritmi, strutture dati, sistemi operativi, reti e sicurezza, ricerca operativa.",
+      },
+      {
+        period: "2018 – 2023",
+        title: "Liceo Scientifico - Scienze Applicate",
+        org: "Vito Volterra, Fabriano",
+        description:
+          "Solida base scientifico-tecnologica e informatica, unita alle materie umanistiche.",
       },
     ],
   },
