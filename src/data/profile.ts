@@ -40,8 +40,9 @@ export const profile: Profile = {
     "Neolaureando in Informatica. Costruisco esperienze web pulite e funzionali, dal frontend agli agenti AI.",
   availability: "Disponibile",
   bio: [
-    "Sto per laurearmi in Informatica all'Università di Camerino. Mi muovo a mio agio su tutto lo stack — dal frontend in React e Next.js al backend in Node e Java — e negli ultimi mesi mi sono appassionato al mondo degli agenti AI, che è anche il cuore del mio percorso da web developer.",
-    "Lavoro per design: prima capisco il problema, poi progetto, poi implemento. Sotto deadline resto pragmatico e iterativo, e curo il codice — pulito, leggibile, mantenibile — perché credo che la qualità si veda nei dettagli.",
+    "Sto per laurearmi in Informatica all'Università di Camerino. Mi muovo a mio agio su tutto lo stack — dal frontend in React, Next.js e TypeScript al backend in Node e Java — e negli ultimi mesi mi sono appassionato al mondo degli agenti AI, diventati il cuore del mio lavoro da web developer.",
+    "Lavoro con metodo: prima capisco il problema, poi progetto, poi implemento. Sotto deadline resto pragmatico e iterativo, e curo il codice — pulito, leggibile, mantenibile — perché credo che la qualità si veda nei dettagli.",
+    "Quello che mi muove è il costruire in sé: mi piace passare ore su un progetto e seguirlo mentre cresce, raffinandolo. Non concepisco un lavoro come «finito» — lo vedo come qualcosa di vivo, da far evolvere. È anche il motivo per cui lavoro full-stack e in modo iterativo.",
     "Mi adatto in fretta, lavoro bene sia in autonomia sia in team, e affronto le cose nuove con voglia di imparare più che con la pretesa di sapere già tutto.",
   ],
   softSkills: [

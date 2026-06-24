@@ -44,7 +44,7 @@ export const journey: JourneyGroup[] = [
         title: "Stage — Web Developer",
         org: "Vargroup",
         description:
-          "Sviluppo di agenti AI, integrazioni REST e automazione di processi ERP.",
+          "Agenti AI custom (TypeScript/Node.js, pattern ReAct, Claude via API) che orchestrano servizi backend e database per automatizzare i flussi dati nei processi ERP. Ho ridotto l'inserimento dati da più passaggi manuali a un unico step conversazionale.",
       },
     ],
   },

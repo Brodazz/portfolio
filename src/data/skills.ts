@@ -32,13 +32,15 @@ export const skills: SkillCategory[] = [
   },
   {
     title: "AI & Agenti",
-    items: ["Agenti AI", "Pattern ReAct", "Integrazione LLM"],
+    items: ["Agenti AI", "Pattern ReAct", "Claude API", "Integrazione LLM"],
   },
   {
     title: "Tools & Practices",
     items: [
       "Git",
       "GitHub",
+      "Docker",
+      "Postman",
       "Vercel",
       "nvm",
       "Visual Paradigm (UML)",
