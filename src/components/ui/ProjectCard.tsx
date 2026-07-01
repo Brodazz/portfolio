@@ -1,45 +1,59 @@
-// Card di progetto. Resa solo in Fase 2 (quando projects.ts ha elementi).
-// Superficie scura, preview, freccia in alto a destra, titolo, descrizione,
-// riga di tag stack in mono. Hover: leggero scale + glow.
+// Card di progetto. Superficie scura, preview, titolo, descrizione, tag stack
+// in mono e link espliciti a Codice (repo) e Demo/prova (con etichetta
+// personalizzabile). Hover: leggero sollevamento + glow.
 
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { GithubIcon } from "@/components/icons/BrandIcons";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const { title, description, stack, year, links, image } = project;
-  // Il link primario della card: demo se presente, altrimenti repo.
-  const primaryHref = links.demo || links.repo;
+  const { title, description, stack, year, links, image, highlight } = project;
 
-  const CardInner = (
-    <>
+  return (
+    <article
+      className={`group flex flex-col overflow-hidden rounded-2xl border bg-surface/50 transition-all duration-300 hover:-translate-y-1 hover:glow-soft ${
+        highlight ? "border-accent/30" : "border-border hover:border-accent/40"
+      }`}
+    >
       {/* Preview */}
-      <div className="relative aspect-video overflow-hidden rounded-xl border border-border bg-bg/40">
+      <div className="relative aspect-video overflow-hidden border-b border-border bg-bg/40">
         {image ? (
           <Image
             src={image}
             alt={title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            // Le GIF animate non vanno "ottimizzate": servite così com'è.
+            unoptimized={image.endsWith(".gif")}
+            sizes="(max-width: 640px) 100vw, 50vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full items-center justify-center font-mono text-xs text-text-muted">
             {year}
           </div>
         )}
-        <span className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full border border-border bg-surface/80 text-text backdrop-blur transition-colors group-hover:border-accent group-hover:text-accent">
-          <ArrowUpRight className="size-4" strokeWidth={2.2} />
-        </span>
+        {highlight && (
+          <span className="absolute left-3 top-3 rounded-full bg-accent px-2.5 py-0.5 font-mono text-[11px] font-medium text-bg">
+            In primo piano
+          </span>
+        )}
       </div>
 
       {/* Testo */}
-      <div className="mt-4 space-y-2">
+      <div className="flex flex-1 flex-col p-5">
         <div className="flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-lg font-semibold text-text">{title}</h3>
+          <h3 className="font-display text-lg font-semibold text-text">
+            {title}
+          </h3>
           <span className="font-mono text-xs text-text-muted">{year}</span>
         </div>
-        <p className="text-sm text-text-muted">{description}</p>
-        <ul className="flex flex-wrap gap-2 pt-1">
+
+        <p className="mt-2 text-sm leading-relaxed text-text-muted">
+          {description}
+        </p>
+
+        <ul className="mt-3 flex flex-wrap gap-2">
           {stack.map((tech) => (
             <li
               key={tech}
@@ -49,23 +63,33 @@ export default function ProjectCard({ project }: { project: Project }) {
             </li>
           ))}
         </ul>
+
+        {/* Link espliciti (repo + demo/prova) */}
+        <div className="mt-4 flex flex-wrap items-center gap-4 pt-1">
+          {links.repo && (
+            <a
+              href={links.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-text-muted transition-colors hover:text-accent"
+            >
+              <GithubIcon className="size-4" />
+              Codice
+            </a>
+          )}
+          {links.demo && (
+            <a
+              href={links.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-strong"
+            >
+              {links.demoLabel ?? "Demo"}
+              <ArrowUpRight className="size-4" strokeWidth={2.2} />
+            </a>
+          )}
+        </div>
       </div>
-    </>
-  );
-
-  const cardClass =
-    "group block rounded-2xl border border-border bg-surface/50 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:glow-soft";
-
-  return primaryHref ? (
-    <a
-      href={primaryHref}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={cardClass}
-    >
-      {CardInner}
-    </a>
-  ) : (
-    <div className={cardClass}>{CardInner}</div>
+    </article>
   );
 }

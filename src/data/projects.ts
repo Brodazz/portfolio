@@ -6,8 +6,10 @@
 export interface ProjectLinks {
   /** URL del repository (es. GitHub). */
   repo?: string;
-  /** URL della demo live (es. Vercel). */
+  /** URL della demo/prova live (es. Vercel, o Marketplace per un'estensione). */
   demo?: string;
+  /** Etichetta del link demo (default "Demo"). Es. "Marketplace" per un'estensione. */
+  demoLabel?: string;
 }
 
 export interface Project {
@@ -28,24 +30,26 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: "modern-video-player",
+    title: "Modern Video Player",
+    description:
+      "Estensione VS Code che riproduce video (MP4, MKV, MOV, HEVC/H.265, WebM…) con audio — incluso AAC — direttamente nelle tab dell'editor, grazie a FFmpeg compilato in WebAssembly. Zero setup, offline, un solo pacchetto ~9 MB.",
+    stack: ["TypeScript", "VS Code API", "WebAssembly", "FFmpeg"],
+    year: "2026",
+    links: {
+      repo: "https://github.com/Brodazz/mp4-player",
+      demo: "https://marketplace.visualstudio.com/items?itemName=Brodazz.mp4-player",
+      demoLabel: "Marketplace",
+    },
+    image: "/projects/video-player.gif",
+    highlight: true,
+  },
+
   // ──────────────────────────────────────────────────────────────
-  // ESEMPIO — copia questo blocco, decommentalo e compilalo per
-  // aggiungere un progetto. La card apparirà automaticamente.
-  //
-  // {
-  //   id: "rpg-a-turni",
-  //   title: "RPG a turni",
-  //   description:
-  //     "Gioco di ruolo a turni con 5 design pattern (State, Strategy, Command, Observer, Factory).",
-  //   stack: ["Java", "Spring Boot", "Design Patterns"],
-  //   year: "2025",
-  //   links: {
-  //     repo: "https://github.com/Brodazz/rpg-a-turni",
-  //     demo: "",
-  //   },
-  //   image: "/projects/rpg.png",
-  //   highlight: true,
-  // },
+  // Per aggiungere un progetto, copia un oggetto come quello sopra.
+  // La card compare da sola nella griglia; `demo` può essere un URL
+  // Vercel, un Marketplace, ecc. (usa `demoLabel` per l'etichetta).
   // ──────────────────────────────────────────────────────────────
 ];
 
