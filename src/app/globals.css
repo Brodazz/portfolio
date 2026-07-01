@@ -12,7 +12,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --accent: #34d399;        /* Emerald — accent principale */
   --accent-strong: #10b981; /* hover / fine gradient */
-  --glow: rgba(52, 211, 153, 0.3);
+  --glow: rgba(52, 211, 153, 0.22);
   --text: #e8edeb;          /* testo primario */
   --text-muted: #7e928a;    /* testo secondario */
 }
@@ -27,7 +27,7 @@
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
 
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-heading);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import GlowBackground from "@/components/layout/GlowBackground";
 import FloatingNav from "@/components/layout/FloatingNav";
@@ -7,9 +7,9 @@ import FooterAccent from "@/components/layout/FooterAccent";
 import MotionProvider from "@/components/motion/MotionProvider";
 import { siteConfig, siteUrl } from "@/lib/site";
 
-// Display / titoli
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Display / titoli — grotesque con più carattere (meno "trendy dev" standard)
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
 });
@@ -82,7 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <body className="min-h-screen bg-bg text-text">
         <MotionProvider>

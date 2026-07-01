@@ -23,9 +23,9 @@ export default function HeroFigure({ className = "" }: { className?: string }) {
           {/* Glow morbido che "respira" dietro la figura. */}
           <BreathingGlow
             className="absolute inset-[14%] -z-10 rounded-full blur-3xl"
-            style={{ backgroundColor: "#34D399", opacity: 0.26 }}
+            style={{ backgroundColor: "#34D399", opacity: 0.2 }}
             scalePeak={1.1}
-            opacityKeyframes={[0.2, 0.36, 0.2]}
+            opacityKeyframes={[0.14, 0.26, 0.14]}
           />
 
           {/* Forme geometriche decorative, sparse e pulite. */}
