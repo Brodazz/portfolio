@@ -5,6 +5,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/icons/BrandIcons";
+import ProjectVideo from "@/components/ui/ProjectVideo";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -21,14 +22,9 @@ export default function ProjectCard({ project }: { project: Project }) {
           immagine, altrimenti l'anno come fallback. */}
       <div className="relative aspect-video overflow-hidden border-b border-border bg-bg/40">
         {video ? (
-          <video
+          <ProjectVideo
             src={video}
             poster={image}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : image ? (
