@@ -23,8 +23,10 @@ export interface Project {
   /** Anno del progetto. */
   year: string;
   links: ProjectLinks;
-  /** Immagine/preview opzionale (percorso in /public o URL). */
+  /** Immagine/preview opzionale (percorso in /public o URL). Se c'è anche `video`, fa da poster. */
   image?: string;
+  /** Video demo opzionale (MP4 in /public): riprodotto in autoplay muto e loop. */
+  video?: string;
   /** Se true, la card può essere evidenziata (es. progetto in primo piano). */
   highlight?: boolean;
 }
@@ -42,7 +44,8 @@ export const projects: Project[] = [
       demo: "https://marketplace.visualstudio.com/items?itemName=Brodazz.mp4-player",
       demoLabel: "Marketplace",
     },
-    image: "/projects/video-player.gif",
+    image: "/projects/video-player.png",
+    video: "/projects/video-player.mp4",
     highlight: true,
   },
 

@@ -8,7 +8,8 @@ import { GithubIcon } from "@/components/icons/BrandIcons";
 import type { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const { title, description, stack, year, links, image, highlight } = project;
+  const { title, description, stack, year, links, image, video, highlight } =
+    project;
 
   return (
     <article
@@ -16,14 +17,25 @@ export default function ProjectCard({ project }: { project: Project }) {
         highlight ? "border-accent/30" : "border-border hover:border-accent/40"
       }`}
     >
-      {/* Preview */}
+      {/* Preview: video demo (autoplay muto/loop) se presente, altrimenti
+          immagine, altrimenti l'anno come fallback. */}
       <div className="relative aspect-video overflow-hidden border-b border-border bg-bg/40">
-        {image ? (
+        {video ? (
+          <video
+            src={video}
+            poster={image}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : image ? (
           <Image
             src={image}
             alt={title}
             fill
-            // Le GIF animate non vanno "ottimizzate": servite così com'è.
             unoptimized={image.endsWith(".gif")}
             sizes="(max-width: 640px) 100vw, 50vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
